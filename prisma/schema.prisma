@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -57,7 +57,7 @@ model Chat {
   wallpaper                 Json?
   lastMessageRecvTimestamp  Int?
 
-  @@unique([sessionId, id], map: "unique_id_per_session_id")
+  @@unique([sessionId, id], map: "unique_id_Chat_session_id")
   @@index([sessionId])
 }
 
@@ -71,7 +71,7 @@ model Contact {
   imgUrl       String? @db.VarChar(255)
   status       String? @db.VarChar(128)
 
-  @@unique([sessionId, id], map: "unique_id_per_session_id")
+  @@unique([sessionId, id], map: "unique_id_Contact_session_id")
   @@index([sessionId])
 }
 
@@ -94,7 +94,7 @@ model GroupMetadata {
   ephemeralDuration Int?
   inviteCode        String?  @db.VarChar(255)
 
-  @@unique([sessionId, id], map: "unique_id_per_session_id")
+  @@unique([sessionId, id], map: "unique_id_GroupMetadata_session_id")
   @@index([sessionId])
 }
 
@@ -147,7 +147,7 @@ model Message {
   userReceipt                     Json?
   verifiedBizName                 String?  @db.VarChar(128)
 
-  @@unique([sessionId, remoteJid, id], map: "unique_message_key_per_session_id")
+  @@unique([sessionId, remoteJid, id], map: "unique_message_key_Message_session_id")
   @@index([sessionId])
 }
 
@@ -157,6 +157,6 @@ model Session {
   id        String @db.VarChar(255)
   data      String @db.Text
 
-  @@unique([sessionId, id], map: "unique_id_per_session_id")
+  @@unique([sessionId, id], map: "unique_id_Session_session_id")
   @@index([sessionId])
 }
