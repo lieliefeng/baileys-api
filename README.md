@@ -1,5 +1,5 @@
 > 🚨 **NOTICE**: `@adiwajshing/baileys` which is this project relied on, has been discontinued. Thus, this project will be archived and stopped receiving updates anymore. Thanks everyone who's been part of this❤️
-
+--1
 ---
 
 # Baileys API
